@@ -1,0 +1,89 @@
+label {
+  font-size: 12px !important;
+}
+
+input {
+  font-size: 10px !important;
+}
+
+.bootstrap-select > .dropdown-toggle {
+  display: block;
+  width: 100%;
+  height: calc(1.5em + 0.75rem + 2px);
+  padding: 0.375rem 0.75rem;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+}
+.bootstrap-select > .dropdown-toggle.bs-placeholder,
+.bootstrap-select > .dropdown-toggle.bs-placeholder:active,
+.bootstrap-select > .dropdown-toggle.bs-placeholder:focus,
+.bootstrap-select > .dropdown-toggle.bs-placeholder:hover {
+  color: #212529 !important;
+  background-color: #fff !important;
+  border-shadow: none !important;
+}
+.actions-btn {
+  color: #212529 !important;
+  background-color: #fff !important;
+  border-shadow: none !important;
+}
+
+.btn-light:hover {
+  color: #212529;
+  background-color: #e2e6ea !important;
+  border-color: #ced4da;
+}
+
+.pesquisar {
+  /* border-radius: 100% !important;
+  background-color: #00a550;
+  color: white !important;
+   padding: 8px; 
+  /* display:flex;
+  flex-direction:column; 
+  justify-content:center; */
+}
+.especial {
+  color: #00a550 !important;
+  display: flex;
+  flex-direction: column !important;
+  justify-content: center !important;
+  font-size: 28px !important;
+  margin-top: -3px !important;
+  /* border: 8px solid #00a550; */
+  cursor: pointer !important;
+  fotn-weight: bold !important;
+}
+
+label {
+  font-size: 12px !important;
+}
+
+input {
+  font-size: 10px !important;
+}
+
+th {
+  font-size: 12px !important;
+}
+
+.pt-3-half {
+  padding: 0.1rem !important;
+}
+
+.select1 {
+  float: right;
+}
+
+.card-body {
+  box-shadow: 0 0 0 1px rgba(53, 72, 91, 0.07), 0 2px 2px rgba(0, 0, 0, 0.01),
+    0 4px 4px rgba(0, 0, 0, 0.02), 0 10px 8px rgba(0, 0, 0, 0.03),
+    0 15px 15px rgba(0, 0, 0, 0.03), 0 30px 30px rgba(0, 0, 0, 0.04),
+    0 70px 65px rgba(0, 0, 0, 0.05);
+}
