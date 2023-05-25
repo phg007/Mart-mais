@@ -26,14 +26,14 @@ inpuntcodpromocao.addEventListener("change", () => {
       $(".primeiro").show();
     }
 
-    // $.ajax({
-    //   url: "editar_produto_emp.php",
-    //   method: "get",
-    //   data: "codpromo=" + codpromo,
-    //   success: function (editar_produto_emp) {
-    //     $(".section").empty().html(editar_produto_emp);
-    //   },
-    // });
+    $.ajax({
+      url: "editar_produto_emp.php",
+      method: "get",
+      data: "codpromo=" + codpromo,
+      success: function (editar_produto_emp) {
+        $(".section").empty().html(editar_produto_emp);
+      },
+    });
   });
 });
 

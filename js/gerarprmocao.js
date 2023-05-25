@@ -211,36 +211,7 @@ inputprodutomargem.addEventListener("change", () => {
   verificarProduto();
 });
 
-// table.addEventListener("change", (event) => {
-//   const target = event.target;
-//   if (target.classList.contains("codproduto")) {
-//     var codproduto = $(this)
-//       .parent()
-//       .parent()
-//       .find(".codproduto")
-//       .closest(".codproduto")
-//       .val();
-//     alert(codproduto);
-//   }
-// });
 
-// table.addEventListener("change", (event) => {
-//   const target = event.target;
-
-//   if (target.classList.contains("codproduto")) {
-//     const codproduto = target.closest("tr").querySelector(".codproduto").value;
-//     const codproduto1 = target.closest("tr").querySelector(".codproduto").value;
-//     const codproduto2 = target.closest("tr").querySelector(".codproduto").value;
-//     const desc = target.closest("tr").querySelector(".desc").value;
-//     const desc1 = target.closest("tr").querySelector(".desc").value;
-//     const codfam = Array.from(document.querySelectorAll(".codfam")).map(
-//       function (codfam) {
-//         return codfam.value.replace("", "0");
-//       }
-//     );
-//     console.log(codfam);
-//   }
-// });
 
 $('#table').on('change', '.codproduto', function(t) {
   //alert('teste');
