@@ -6,16 +6,6 @@ $codpromo = $_GET['codpromo'];
 ?>
 <html>
     <head>
-        <title>Martmais</title>
-        <link rel="icon" type="image/png" href="img/martband.png">
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
-        <link href="mdb/css/bootstrap.css" rel="stylesheet">
-        <link href="mdb/css/mdb.css" rel="stylesheet">
-        <link href="jquery_ui/jquery/jquery-ui.css" rel="stylesheet">
-        <link href="assets/css/paper-dashboard.css" rel="stylesheet"> 
-        <link rel="stylesheet" type="text/css" href="multiselect/css/multi-select.css">  
-        <link rel="stylesheet" type="text/css" href="DataTables/datatables.min.css"/>     
-        <link rel="stylesheet" type="text/css" href="Buttons/css/buttons.dataTables.min.css"/>  
      
     </head>
     <div class="accordion" id="accordionExample">
@@ -142,8 +132,6 @@ $codpromo = $_GET['codpromo'];
     </div>
     <section class="bodyy1"></section>
 </html>
-
-<script type="text/javascript" src="mdb/js/bootstrap.min.js"></script>     
 
 <style>    
 
