@@ -176,7 +176,7 @@ if (isset($_SESSION['nome'])) {
                             <div id="table" class="table-editable" style="margin-top: -15px;">
                                 <span class="table-add float-right mb-3 mr-2"><a href="#!" style="color: #00a550;"><i class="fas fa-plus fa-2x " aria-hidden="true"></i></a></span>
 
-                                <table class="table table-bordered  table-striped text-center">
+                                <table class="table table-bordered  table-striped text-center" id="table1">
                                     <thead>
                                         <tr>
                                             <th class="text-center">MENOR EMB</th>
@@ -273,19 +273,6 @@ if (isset($_SESSION['nome'])) {
                         <a href="#!" style="font-size:15px; color:red" class="table-remove"><i class="far fa-trash-alt"></i></a></td>
                         </tr>`;
 
-    $('.table-add').on('click', 'i', () => {
-
-        // const $clone = $tableID.find('tbody tr').last().clone(true).removeClass('hide table-line');
-
-        $('tbody').append(newTr);
-
-        if ($tableID.find('tbody tr').length === 0) {
-
-            $('tbody').append(newTr);
-        }
-
-        $tableID.find('table').append($clone);
-    });
 
 
     $tableID.on('click', '.checked', function() {

@@ -6,6 +6,7 @@ const butttongerarPromocao = document.getElementById("gerarPromocao");
 const buttonConsultarmargem = document.getElementById("consultarmargem");
 const inputprodutomargem = document.getElementById("codprod");
 const table = document.getElementById("table");
+export var inputCodProduto = document.getElementsByClassName("codproduto");
 
 function carregando() {
   $(".receber_loading4").addClass("loading4");
@@ -211,72 +212,143 @@ inputprodutomargem.addEventListener("change", () => {
   verificarProduto();
 });
 
+class GerenciarProduto {
+  constructor(codproduto1, codfam) {
+    this.codproduto1 = codproduto1;
+    this.codfam = codfam;
+  }
 
+  verificarProduto(codproduto1, codfam) {
+    return new Promise((resolve, reject) => {
+      $.ajax({
+        url: "verificar_produto.php",
+        method: "get",
+        data: "codproduto1=" + codproduto1 + "&codfam=" + codfam,
+        success: function (verificarr) {
+          // self.retornoVerificar(verificarr);
 
-$('#table').on('change', '.codproduto', function(t) {
-  //alert('teste');
-  var codproduto = $(this).parent().parent().find(".codproduto").closest(".codproduto").val();
-  var codproduto1 = $(this).parent().parent().find(".codproduto").closest(".codproduto").val();
-  var codproduto2 = $(this).parent().parent().find(".codproduto").closest(".codproduto");
-  var desc = $(this).parent().parent().find(".desc").closest(".desc");
-  var desc1 = $(this).parent().parent().find(".desc").closest(".desc");
+          resolve(verificarr);
+        },
+        error: function (error) {
+          reject(error);
+        },
+      });
+    });
+  }
 
-  var codfam = $('.codfam').toArray().map(function(codfam) {
-      return $(codfam).val().replace('', '0');
-  });
+  pesquisarProduto(codproduto1) {
+    return new Promise((resolve, reject) => {
+      $.getJSON("pesquisar_produto.php", {
+        codproduto: codproduto1,
+      }).done(function (retorno) {
+        resolve(retorno);
+        //desc.val(retorno.desc);
+      });
+    });
+  }
+}
 
-  $.ajax({
-      url: "verificar_produto.php",
-      method: 'get',
-      data: 'codproduto1=' + codproduto1 + '&codfam=' + codfam,
-      success: function(verificar) {
-          // $('#msg5').empty().html(msg);
+const adicionarLinha = $(".table-add").on("click", "i", () => {
+  // const $clone = $tableID.find('tbody tr').last().clone(true).removeClass('hide table-line');
 
-          if (verificar == 0) {
-              codproduto2.val('');
-              desc1.val('');
-              $.ajax({
-                  url: "msg.php",
-                  //method:'get',
-                  //data:'codproduto1='+codproduto1,
-                  success: function(msg) {
-                      $('#msg4').empty().html(msg);
+  $("tbody").append(newTr);
 
-                  }
+  if ($tableID.find("tbody tr").length === 0) {
+    $("tbody").append(newTr);
+  }
 
-              });
-
-          }
-          if (verificar == 3) {
-              codproduto2.val('');
-              desc1.val('');
-              $.ajax({
-                  url: "msg3.php",
-                  //method:'get',
-                  //data:'codproduto1='+codproduto1,
-                  success: function(msg1) {
-                      $('#msg4').empty().html(msg1);
-
-                  }
-
-              });
-
-          } else if (verificar == 1) {
-              $.getJSON('pesquisar_produto.php', {
-                      codproduto
-                  })
-                  .done(function(retorno) {
-
-                      //console.log(retorno);
-
-                      desc.val(retorno.desc);
-
-                  });
-          } //FECHA O ELSE IF
-      } // SUCCESS DO AJAX
-  }); // FECHA AJAX
-
+  //$tableID.find("table").append($clone);
 });
+
+const capturandoElementosDom = $("#table").on(
+  "change",
+  ".codproduto",
+  function (t) {
+    var codproduto = $(this)
+      .parent()
+      .parent()
+      .find(".codproduto")
+      .closest(".codproduto")
+      .val();
+    console.log(codproduto);
+    var codproduto1 = $(this)
+      .parent()
+      .parent()
+      .find(".codproduto")
+      .closest(".codproduto")
+      .val();
+    var codproduto2 = $(this)
+      .parent()
+      .parent()
+      .find(".codproduto")
+      .closest(".codproduto");
+    var desc = $(this).parent().parent().find(".desc").closest(".desc");
+    var desc1 = $(this).parent().parent().find(".desc").closest(".desc");
+
+    var codfam = $(".codfam")
+      .toArray()
+      .map(function (codfam) {
+        return $(codfam).val().replace("", "0");
+      });
+
+    const verificarProduto = new GerenciarProduto();
+    const buscarProduto = new GerenciarProduto();
+
+    verificarProduto.verificarProduto(codproduto1, codfam).then((valor) => {
+      if (valor === "1") {
+        buscarProduto.pesquisarProduto(codproduto1).then((retorno) => {
+          desc.val(retorno.desc);
+        });
+      } else if (valor === "0") {
+        console.log(valor + "Produto inexistente");
+      } else {
+        //chamr toasty de error
+        console.log(valor + "chamr toasty de error");
+      }
+    });
+    // $.ajax({
+    //   url: "verificar_produto.php",
+    //   method: "get",
+    //   data: "codproduto1=" + codproduto1 + "&codfam=" + codfam,
+    //   success: function (verificar) {
+    //     // $('#msg5').empty().html(msg);
+
+    //     if (verificar == 0) {
+    //       codproduto2.val("");
+    //       desc1.val("");
+    //       $.ajax({
+    //         url: "msg.php",
+    //         //method:'get',
+    //         //data:'codproduto1='+codproduto1,
+    //         success: function (msg) {
+    //           $("#msg4").empty().html(msg);
+    //         },
+    //       });
+    //     }
+    //     if (verificar == 3) {
+    //       codproduto2.val("");
+    //       desc1.val("");
+    //       $.ajax({
+    //         url: "msg3.php",
+    //         //method:'get',
+    //         //data:'codproduto1='+codproduto1,
+    //         success: function (msg1) {
+    //           $("#msg4").empty().html(msg1);
+    //         },
+    //       });
+    //     } else if (verificar == 1) {
+    //       $.getJSON("pesquisar_produto.php", {
+    //         codproduto,
+    //       }).done(function (retorno) {
+    //         //console.log(retorno);
+
+    //         desc.val(retorno.desc);
+    //       });
+    //     } //FECHA O ELSE IF
+    //   }, // SUCCESS DO AJAX
+    // }); // FECHA AJAX
+  }
+);
 
 // DESCRIÇÃO FAMILIA
 $("#table").on("change", ".codfam", function (t) {
