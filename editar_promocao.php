@@ -87,7 +87,7 @@ $_SESSION['nome'];
                                 <div class="col-lg-2">
                                     <div class="form-group">
                                         <label> </label>
-                                        <input type="button" value="Salvar" class="btn  btn-rounded buttonpesq pesquisa" id="PESCAD" style="background-color:#00a550">
+                                        <input type="button" value="Salvar" class="btn  btn-rounded buttonpesq pesquisa" id="buttonpesq" style="background-color:#00a550">
 
                                     </div>
                                 </div>
@@ -121,74 +121,7 @@ $_SESSION['nome'];
 <script>
     $('.ultimo').hide();
 
-    $('.buttonpesq').click(function() {
-
-        var nome = $('.nome').val();
-        var status1 = $('.status1').val();
-        var dtaini = $('.dtaini').val();
-        var dtafin = $('.dtafin').val();
-        var codpromo = $('.codpromo').val();
-
-        var checkbox1 = $(".checkbox1").parent().parent().find(".checkbox1").closest(".checkbox1").toArray().map(function(checkbox1) {
-            return $(checkbox1).is(':checked');
-
-        });
-
-        var NROEMPRESA = $(".NROEMPRESA").parent().parent().find(".NROEMPRESA").closest(".NROEMPRESA").toArray().map(function(NROEMPRESA) {
-            return $(NROEMPRESA).text();
-
-        });
-
-        var PRECOINCENTIVOEMB = $(".PRECOINCENTIVOEMB").parent().parent().find(".PRECOINCENTIVOEMB").closest(".PRECOINCENTIVOEMB").toArray().map(function(PRECOINCENTIVOEMB) {
-            return $(PRECOINCENTIVOEMB).text();
-
-        });
-
-        var QTDEMBALAGEM = $(".QTDEMBALAGEM").parent().parent().find(".QTDEMBALAGEM").closest(".QTDEMBALAGEM").toArray().map(function(QTDEMBALAGEM) {
-            return $(QTDEMBALAGEM).text();
-
-        });
-
-
-
-        //alert(dtaini)
-
-        $.ajax({
-            url: "data.php",
-            method: 'get',
-            data: 'dtaini=' + dtaini + '&dtafin=' + dtafin,
-            success: function(data) {
-
-                if (data > 0) {
-
-                    alert('data invalida');
-                } else {
-
-
-
-                    $.ajax({
-                        url: "update_editar_promo.php",
-                        method: 'get',
-                        data: 'checkbox1=' + checkbox1 + '&PRECOINCENTIVOEMB=' + PRECOINCENTIVOEMB +
-                            '&dtaini=' + dtaini + '&dtafin=' + dtafin + '&codpromo=' + codpromo + '&nome=' + nome +
-                            '&QTDEMBALAGEM=' + QTDEMBALAGEM + '&status=' + status1 +
-                            '&checkbox1=' + checkbox1 + '&NROEMPRESA=' + NROEMPRESA,
-                        success: function(editar_produto_emp) {
-
-                            $('.section1').empty().html(editar_produto_emp);
-
-                        }
-
-                    });
-
-                }
-
-            }
-
-        });
-
-    });
-
+    
 
     $('.dtaini,.dtafin').datetimepicker({
         timepicker: false,
